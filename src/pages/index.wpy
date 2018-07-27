@@ -1,0 +1,286 @@
+<style lang="less">
+    .logo{
+        display: block;
+    }
+
+    .logo image {
+        display: block;
+        margin: 0 auto;
+    }
+
+</style>
+<template>
+    <view>
+        <view class="logo">
+            <image src="https://ws1.sinaimg.cn/large/0076fRdzly1ftlvs89xyhj30hs0hsaae.jpg" mode="aspectFit"></image>
+        </view>
+        <repeat for="{{content}}" key="index" index="index" item="item">
+            <i-panel title="{{item.title}}">
+                <i-cell-group>
+                    <repeat for="{{item.cells}}" key="index" item="cell" index="index">
+                        <i-cell title="{{cell.title}}" is-link="{{cell.isLink ? true : false}}" url="{{'/pages/' + cell.pageName}}"></i-cell>
+                    </repeat>
+                </i-cell-group>
+            </i-panel>
+
+        </repeat>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+
+    export default class Index extends wepy.page {
+        config = {
+            navigationBarTitleText: 'iView in Wepy',
+            usingComponents: {
+                'i-cell' : '../iview/cell/index',
+                'i-panel' : '../iview/panel/index',
+                'i-cell-group' : '../iview/cell-group/index',
+            }
+        }
+
+        data = {
+            testTitle : 'Test',
+            content : [
+                {
+                    title : '布局',
+                    cells : [
+                        {
+                            title : 'Layout 栅格布局',
+                            isLink : true,
+                            pageName : 'layout'
+                        },
+                        {
+                            title : 'Grid 宫格',
+                            isLink : true,
+                            pageName : 'grid'
+                        },
+                        {
+                            title : 'Panel 面板',
+                            isLink : true,
+                            pageName : 'panel'
+                        },
+                        {
+                            title : 'List 列表',
+                            isLink : true,
+                            pageName : 'list'
+                        },
+                        {
+                            title : 'Card 卡片',
+                            isLink : true,
+                            pageName :'card'
+                        }
+
+
+                    ]
+                },
+                {
+                    title: '基础组件',
+                    cells : [
+                        {
+                            title:'Button 按钮',
+                            pageName:'button',
+                            isLink:true,
+                        },
+                        {
+                            title:'Color 色彩',
+                            pageName:'color',
+                            isLink:true,
+                        },
+                        {
+                            title:'Icon 图标',
+                            pageName:'icon',
+                            isLink:true,
+                        },
+
+                    ]
+                },
+                {
+                    title: '导航',
+                    cells : [
+                        {
+                            title : 'TabBar 标签栏',
+                            pageName : 'tab-bar',
+                            isLink: true
+                        },
+                        {
+                            title : 'Tabs 标签页',
+                            pageName : 'tabs',
+                            isLink: true
+                        },
+                        {
+                            title : 'Drawer 抽屉',
+                            pageName : 'drawer',
+                            isLink: true
+                        },
+                        {
+                            title : 'Page 分页',
+                            pageName : 'page',
+                            isLink: true
+                        },
+                        {
+                            title : 'Steps 步骤条',
+                            pageName : 'steps',
+                            isLink: true
+                        },
+                        {
+                            title : 'NoticeBar 通告栏',
+                            pageName : 'notice-bar',
+                            isLink: true
+                        },
+                        {
+                            title : 'Index 索引选择器',
+                            pageName : 'index-list',
+                            isLink: true
+                        },
+                        {
+                            title : 'Sticky 吸顶容器',
+                            pageName : 'sticky',
+                            isLink: true
+                        },
+                        {
+                            title : 'Sticky Index',
+                            pageName : 'index-sticky',
+                            isLink: true
+                        },
+
+
+                    ]
+                },
+                {
+                    title: '操作反馈',
+                    cells : [
+                        {
+                            title : 'ActionSheet 动作面板',
+                            pageName : 'action-sheet',
+                            isLink: true
+                        },
+                        {
+                            title : 'Toast 轻提示',
+                            pageName : 'toast',
+                            isLink: true
+                        },
+                        {
+                            title : 'Modal 对话框',
+                            pageName : 'modal',
+                            isLink: true
+                        },
+                        {
+                            title : 'Message 全局提醒',
+                            pageName : 'message',
+                            isLink: true
+                        },
+                        {
+                            title : 'Spin 加载中',
+                            pageName : 'spin',
+                            isLink: true
+                        },
+                        {
+                            title : 'Swipeout 滑动菜单',
+                            pageName : 'swipeout',
+                            isLink: true
+                        },
+
+
+                    ]
+                },
+                {
+                    title: '视图',
+                    cells : [
+                        {
+                            title : 'Badge 徽章',
+                            pageName : 'badge',
+                            isLink: true
+                        },
+                        {
+                            title : 'Alert 警告提示',
+                            pageName : 'alert',
+                            isLink: true
+                        },
+                        {
+                            title : 'Tag 标签',
+                            pageName : 'tag',
+                            isLink: true
+                        },
+                        {
+                            title : 'Progress 进度条',
+                            pageName : 'progress',
+                            isLink: true
+                        },
+                        {
+                            title : 'Avatar 头像',
+                            pageName : 'avatar',
+                            isLink: true
+                        },
+                        {
+                            title : 'CountDown 倒计时',
+                            pageName : 'count-down',
+                            isLink: true
+                        },
+                        {
+                            title : 'Divider 分隔符',
+                            pageName : 'divider',
+                            isLink: true
+                        },
+                        {
+                            title : 'Collapse 折叠面板',
+                            pageName : 'collapse',
+                            isLink: true
+                        },
+                        {
+                            title : 'LoadMore 页底提示',
+                            pageName : 'load-more',
+                            isLink: true
+                        },
+
+
+
+                    ]
+                },
+                {
+                    title: '表单',
+                    cells : [
+                        {
+                            title : 'Input 输入框',
+                            pageName : 'input',
+                            isLink: true
+                        },
+                        {
+                            title : 'Radio 单选',
+                            pageName : 'radio',
+                            isLink: true
+                        },
+                        {
+                            title : 'Checkbox 复选',
+                            pageName : 'checkbox',
+                            isLink: true
+                        },
+                        {
+                            title : 'Switch 开关',
+                            pageName : 'switch',
+                            isLink: true
+                        },
+                        {
+                            title : 'Rate 评分',
+                            pageName : 'rate',
+                            isLink: true
+                        },
+                        {
+                            title : 'InputNumber 数字输入框',
+                            pageName : 'input-number',
+                            isLink: true
+                        },
+
+
+                    ]
+                },
+
+
+
+            ]
+        }
+
+
+    }
+</script>

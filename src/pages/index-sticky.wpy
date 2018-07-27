@@ -1,0 +1,102 @@
+<style lang="less">
+    .i-sticky-demo,page{
+        width:100%;
+        height:100%;
+    }
+    .i-sticky-demo-item{
+        padding:10px;
+        border-bottom:#ddd solid 1rpx;
+        font-size:14px;
+    }
+    .i-sticky-demo-des{
+        padding:0 15px;
+        margin-bottom:10px;
+        font-size:12px;
+        color:#ff9900;
+    }
+</style>
+
+<template>
+
+    <view class="i-sticky-demo">
+        <i-sticky scrollTop="{{scrollTop}}">
+            <repeat for="{{cities}}" key="key" index="index" item="item">
+                <i-sticky-item i-class="i-sticky-demo-title">
+                    <view slot="title">
+                        {{item.key}}
+                    </view>
+                    <view slot="content">
+
+                        <repeat for="{{item.list}}" key="in" index="in" item="it">
+                            <view class="i-sticky-demo-item">
+                                {{it.name}}
+                            </view>
+                        </repeat>
+                    </view>
+                </i-sticky-item>
+
+            </repeat>
+        </i-sticky>
+    </view>
+
+
+</template>
+
+<script>
+    import wepy from "wepy"
+    import {cities} from "../utils/city";
+
+    export default class indexList extends wepy.page {
+        config = {
+            navigationBarTitleText : "Index 索引选择器",
+            usingComponents: {
+                'i-sticky-item' : '../iview/sticky-item/index',
+                'i-sticky' : '../iview/sticky/index',
+            }
+        }
+
+        data = {
+            scrollTop : 0,
+            cities : []
+        }
+
+        methods = {
+            onChange(event){
+                console.log(event.detail,'click right menu callback data')
+            },
+        }
+
+        //页面滚动执行方式
+        onPageScroll(event){
+            this.scrollTop = event.scrollTop;
+            console.log('this.scrollTop');
+            this.$apply();
+        }
+
+        constructor ()
+        {
+            super()
+        }
+
+        onReady () {
+            let storeCity = new Array(26);
+            const words = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+            words.forEach((item,index)=>{
+                storeCity[index] = {
+                    key : item,
+                    list : []
+                }
+            })
+            cities.forEach((item)=>{
+                let firstName = item.pinyin.substring(0,1);
+                let index = words.indexOf( firstName );
+                storeCity[index].list.push({
+                    name : item.name,
+                    key : firstName
+                });
+            })
+            this.cities = storeCity;
+        }
+    }
+</script>
+

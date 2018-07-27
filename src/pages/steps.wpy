@@ -1,0 +1,196 @@
+<style lang="less">
+    .one-tag {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+</style>
+
+<template>
+    <view class="i-steps-demo">
+        <view class="one-tag">基本用法</view>
+        <i-steps current="{{firstCurrent}}">
+            <i-step >
+
+            </i-step>
+            <i-step >
+
+            </i-step>
+            <i-step >
+
+            </i-step>
+        </i-steps>
+        <i-button @tap="handleClick('firstCurrent' , 2)">Next</i-button>
+
+
+        <view class="one-tag">使用 icon 图标</view>
+        <i-steps current="{{iconCurrent}}">
+            <i-step icon="barrage">
+                <view slot="title">
+                    {{ iconCurrent > 0 ? '已完成' : '进行中' }}
+
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step  icon="brush">
+                <view slot="title">
+                    进行中
+                </view>
+                <view  icon="camera">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step  icon="collection">
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+        </i-steps>
+        <i-button @tap="handleClick('iconCurrent' , 2)">Next</i-button>
+
+
+        <view class="one-tag">步骤进度</view>
+        <i-steps current="{{current}}">
+            <i-step>
+                <view slot="title">
+                    <view wx:if="{{current == 0 }}" slot="title">
+                        进行中
+                    </view>
+                    <view slot="title" wx:elif="{{current > 0}}">
+                        已完成
+                    </view>
+                    <view slot="title" wx:else>
+                        错误
+                    </view>
+
+                </view>
+            </i-step>
+            <i-step>
+                <view wx:if="{{current == 1 }}" slot="title">
+                    进行中
+                </view>
+                <view slot="title" wx:elif="{{current > 1}}">
+                    已完成
+                </view>
+                <view slot="title" wx:else>
+                    错误
+                </view>
+
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    <view wx:if="{{current == 2 }}" slot="title">
+                        进行中
+                    </view>
+                    <view slot="title" wx:elif="{{current > 2}}">
+                        已完成
+                    </view>
+                    <view slot="title" wx:else>
+                        错误
+                    </view>
+
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    <view wx:if="{{current == 3 }}" slot="title">
+                        进行中
+                    </view>
+                    <view slot="title" wx:elif="{{current > 3}}">
+                        已完成
+                    </view>
+                    <view slot="title" wx:else>
+                        错误
+                    </view>
+
+                </view>
+            </i-step>
+
+        </i-steps>
+        <i-button @tap="handleClick('current' , 3)">下一步</i-button>
+
+        <view class="one-tag">垂直方向</view>
+        <i-steps current="{{verticalCurrent}}" direction="vertical">
+            <i-step>
+                <view slot="title">
+                    已完成
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    进行中
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+            <i-step>
+                <view slot="title">
+                    错误
+                </view>
+                <view slot="content">
+                    这里是该步骤的描述信息
+                </view>
+            </i-step>
+        </i-steps>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy'
+
+    export default  class steps extends wepy.page {
+        config = {
+            navigationBarTitleText : 'Steps 步骤',
+            usingComponents: {
+                'i-step' : '../iview/step/index',
+                'i-steps' : '../iview/steps/index',
+                'i-button' : '../iview/button/index',
+            }
+        }
+
+        constructor () {
+            super();
+        }
+
+        data = {
+            firstCurrent : 0,
+            iconCurrent : 0,
+            current : 2,
+            verticalCurrent : 2
+        }
+
+
+
+        methods = {
+            handleClick(name , len){
+                let addCurrent = this[name] + 1;
+                let current = addCurrent > len ? 0 : addCurrent;
+                this[name] = current;
+            },
+
+
+        }
+
+
+        statusTitle (max , sel , cur ) {
+            console.log(1);
+            cur = this[cur];
+            if(sel === cur ) {
+                return '进行中';
+            }else if (sel < cur) {
+                return '已完成';
+            }
+
+            return '错误';
+        }
+    }
+</script>

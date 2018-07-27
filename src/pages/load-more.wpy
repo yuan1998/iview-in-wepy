@@ -1,0 +1,28 @@
+<style lang="less">
+
+</style>
+
+<template>
+    <i-load-more />
+    <i-load-more tip="暂无数据" loading="{{ false }}" />
+    <i-load-more loading="{{ false }}" />
+</template>
+
+<script>
+    import wepy from "wepy"
+
+    export default class loadMore extends wepy.page {
+        config = {
+            navigationBarTitleText : "LoadMore 页底提示",
+            usingComponents: {
+                'i-load-more' : '../iview/load-more/index',
+
+            }
+        }
+
+        constructor ()
+        {
+            super()
+        }
+    }
+</script>
