@@ -1,0 +1,16 @@
+
+    <view>
+        <view class="logo">
+            <image src="https://ws1.sinaimg.cn/large/0076fRdzly1ftlvs89xyhj30hs0hsaae.jpg" mode="aspectFit"/>
+        </view>
+        <block wx:for="{{content}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+            <i-panel title="{{item.title}}">
+                <i-cell-group>
+                    <block wx:for="{{item.cells}}" wx:for-index="index" wx:for-item="cell" wx:key="index">
+                        <i-cell title="{{cell.title}}" is-link="{{cell.isLink ? true : false}}" url="{{'/pages/' + cell.pageName}}"/>
+                    </block>
+                </i-cell-group>
+            </i-panel>
+
+        </block>
+    </view>

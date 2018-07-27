@@ -1,0 +1,9 @@
+
+    <i-grid>
+        <block wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+            <view class="icon-item">
+                <i-icon type="{{ item }}" size="28" color="#80848f"/>
+                <view class="icon-item-name">{{ item }}</view>
+            </view>
+        </block>
+    </i-grid>
